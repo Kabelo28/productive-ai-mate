@@ -159,7 +159,7 @@ export function ResultToolbar({ children }: { children: ReactNode }) {
   );
 }
 
-/* -------------------------------状态 states -------------------------------- */
+/* --------------------------------- states --------------------------------- */
 
 export function LoadingState({ message }: { message: string }) {
   return (
