@@ -1,29 +1,122 @@
-# Welcome to your Lovable project
+# Meridian — AI Workplace Productivity Assistant
 
-This project was built with [Lovable](https://lovable.dev).
+Meridian is a modern, dark-themed workplace productivity dashboard that helps professionals automate repetitive tasks with AI. It combines five focused AI tools and an interactive chatbot into a single responsive workspace.
 
-## Build with Lovable
+![Meridian dashboard preview](https://productive-ai-mate.lovable.app/og-image.png)
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+## Features
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+- **Smart Email Generator** — Write professional emails by audience, purpose, tone (Formal / Informal / Persuasive), and length (Short / Medium / Detailed). Edit, copy, and regenerate in one click.
+- **Meeting Notes Summarizer** — Paste raw meeting notes and get an executive summary, key discussion points, decisions made, and a structured action-items table with owners, deadlines, and priorities.
+- **AI Task Planner** — Build a daily or weekly schedule from tasks, deadlines, working hours, existing meetings, and priorities. Uses urgency/importance reasoning and highlights scheduling risks.
+- **AI Research Assistant** — Ask a research question and receive a simple explanation, key findings, important points, recommendations, and risks/limitations.
+- **AI Workplace Chatbot** — Have a streaming conversation about workplace productivity, email writing, meeting summaries, task planning, and research.
+- **Dashboard Overview** — Track tasks completed, estimated time saved, most-used tool, recent AI activity, and a productivity index.
 
-## Development
+## Tech Stack
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+- [TanStack Start](https://tanstack.com/start) — Full-stack React framework with SSR/SSG and server functions
+- [React 19](https://react.dev) — UI library
+- [TypeScript](https://www.typescriptlang.org) — Type-safe development
+- [Tailwind CSS v4](https://tailwindcss.com) — Utility-first styling
+- [shadcn/ui](https://ui.shadcn.com) — Accessible UI primitives
+- [Lovable AI Gateway](https://docs.lovable.dev/ai/gateway) — AI model access via `google/gemini-3.7-flash`
+- [Zod](https://zod.dev) — Input validation and structured output schemas
 
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+## Getting Started
+
+### Prerequisites
+
+- Node.js 20+ and a package manager (npm, yarn, pnpm, or bun)
+- A Lovable AI Gateway key (`LOVABLE_API_KEY`) for the AI features
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/<your-org>/meridian-ai-workplace-assistant.git
+cd meridian-ai-workplace-assistant
+
+# Install dependencies
+npm install
+
+# Start the development server
 npm run dev
 ```
 
-## Built with
+The dev server runs at `http://localhost:8080` by default.
 
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
+### Environment Variables
+
+Create a `.env` file in the project root:
+
+```env
+LOVABLE_API_KEY=your_lovable_ai_gateway_key
+```
+
+> The `LOVABLE_API_KEY` is only used server-side through TanStack Start server functions.
+
+## Project Structure
+
+```text
+src/
+  components/
+    ai-notice.tsx          # Responsible AI warning notice
+    tool-kit.tsx           # Shared UI primitives for tools
+  lib/
+    activity.ts            # LocalStorage activity tracking
+    ai-gateway.server.ts   # Lovable AI Gateway provider setup
+    ai.functions.ts        # Server functions for email, notes, planner, research
+  routes/
+    __root.tsx             # App shell with sidebar navigation
+    api/chat.ts            # Streaming chatbot endpoint
+    index.tsx              # Dashboard overview
+    email.tsx              # Smart Email Generator
+    notes.tsx              # Meeting Notes Summarizer
+    planner.tsx            # AI Task Planner
+    research.tsx           # AI Research Assistant
+    chat.tsx               # AI Workplace Chatbot
+  styles.css               # Obsidian Glass design tokens and Tailwind theme
+```
+
+## Available Scripts
+
+| Script | Description |
+|--------|-------------|
+| `npm run dev` | Start the Vite dev server |
+| `npm run build` | Build for production |
+| `npm run start` | Start the production server |
+| `npm run lint` | Run ESLint |
+| `npm run format` | Format code with Prettier |
+
+## AI Usage & Responsible AI
+
+Meridian uses generative AI to produce workplace content. All outputs should be reviewed before use in business decisions or external communication. The app displays a responsible-AI notice on every tool page:
+
+> "AI-generated content may contain errors. Review and verify important information before using it for business decisions or sending it externally. Do not enter confidential or sensitive information."
+
+## Design System
+
+Meridian uses the **Obsidian Glass** design direction:
+
+- Dark enterprise surfaces with subtle glass-like panels
+- Primary accent: emerald green
+- Typography: Space Grotesk headings + IBM Plex Sans body
+- Responsive sidebar navigation with a mobile-friendly bottom bar
+- Loading shimmer, error states, and copy-to-clipboard interactions
+
+## Deployment
+
+Meridian is built for edge deployment and can be published directly from Lovable. The live published URL is:
+
+**https://productive-ai-mate.lovable.app**
+
+To deploy your own fork, connect the project to your GitHub account in Lovable and publish from the editor.
+
+## License
+
+This project is generated by [Lovable](https://lovable.dev) and is provided as-is for personal or commercial use. Refer to your Lovable workspace terms for details.
+
+---
+
+Built with Lovable · Powered by TanStack Start & the Lovable AI Gateway
