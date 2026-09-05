@@ -1,186 +1,122 @@
-# AI Productivity Hub
+# Meridian — AI Workplace Productivity Assistant
 
-Create a modern responsive web application called AI Workplace Productivity Assistant.
+Meridian is a modern, dark-themed workplace productivity dashboard that helps professionals automate repetitive tasks with AI. It combines five focused AI tools and an interactive chatbot into a single responsive workspace.
 
-The purpose of the application is to help professionals automate repetitive workplace tasks and improve productivity.
+![Meridian dashboard preview](https://productive-ai-mate.lovable.app/og-image.png)
 
-Build a clean professional dashboard with five main AI tools:
+## Features
 
-Smart Email Generator
+- **Smart Email Generator** — Write professional emails by audience, purpose, tone (Formal / Informal / Persuasive), and length (Short / Medium / Detailed). Edit, copy, and regenerate in one click.
+- **Meeting Notes Summarizer** — Paste raw meeting notes and get an executive summary, key discussion points, decisions made, and a structured action-items table with owners, deadlines, and priorities.
+- **AI Task Planner** — Build a daily or weekly schedule from tasks, deadlines, working hours, existing meetings, and priorities. Uses urgency/importance reasoning and highlights scheduling risks.
+- **AI Research Assistant** — Ask a research question and receive a simple explanation, key findings, important points, recommendations, and risks/limitations.
+- **AI Workplace Chatbot** — Have a streaming conversation about workplace productivity, email writing, meeting summaries, task planning, and research.
+- **Dashboard Overview** — Track tasks completed, estimated time saved, most-used tool, recent AI activity, and a productivity index.
 
-Meeting Notes Summarizer
+## Tech Stack
 
-AI Task Planner
+- [TanStack Start](https://tanstack.com/start) — Full-stack React framework with SSR/SSG and server functions
+- [React 19](https://react.dev) — UI library
+- [TypeScript](https://www.typescriptlang.org) — Type-safe development
+- [Tailwind CSS v4](https://tailwindcss.com) — Utility-first styling
+- [shadcn/ui](https://ui.shadcn.com) — Accessible UI primitives
+- [Lovable AI Gateway](https://docs.lovable.dev/ai/gateway) — AI model access via `google/gemini-3.7-flash`
+- [Zod](https://zod.dev) — Input validation and structured output schemas
 
-AI Research Assistant
+## Getting Started
 
-AI Workplace Chatbot
+### Prerequisites
 
-1. Smart Email Generator
+- Node.js 20+ and a package manager (npm, yarn, pnpm, or bun)
+- A Lovable AI Gateway key (`LOVABLE_API_KEY`) for the AI features
 
-Create a form containing:
+### Installation
 
-Recipient/audience
+```bash
+# Clone the repository
+git clone https://github.com/<your-org>/meridian-ai-workplace-assistant.git
+cd meridian-ai-workplace-assistant
 
-Email purpose
+# Install dependencies
+npm install
 
-Key information
-
-Tone selector: Formal, Informal, Persuasive
-
-Length selector: Short, Medium, Detailed
-
-Generate Email button
-
-The AI should generate:
-
-Subject line
-
-Professional email
-
-Clear call to action where appropriate
-
-Allow the user to regenerate, edit and copy the result.
-
-2. Meeting Notes Summarizer
-
-Create a large text input where users can paste meeting notes.
-
-The AI should generate:
-
-Executive summary
-
-Key discussion points
-
-Decisions made
-
-Action items
-
-Responsible people
-
-Deadlines
-
-Present action items in a structured table.
-
-3. AI Task Planner
-
-Allow users to enter:
-
-Tasks
-
-Deadlines
-
-Available working hours
-
-Existing meetings
-
-Task priority
-
-The AI should generate a daily or weekly schedule.
-
-Prioritise tasks according to urgency and importance and explain the reasoning behind the prioritisation.
-
-4. AI Research Assistant
-
-Allow users to enter a research question or topic.
-
-Generate:
-
-Simple explanation
-
-Key findings
-
-Important points
-
-Potential recommendations
-
-Risks or limitations
-
-Clearly indicate that important information should be verified before being used for business decisions.
-
-5. AI Workplace Chatbot
-
-Create an interactive chatbot that allows users to ask general workplace productivity questions.
-
-The chatbot should be able to help with:
-
-Email writing
-
-Meeting summaries
-
-Task planning
-
-Research
-
-Workplace productivity
-
-User Interface
-
-Use a modern professional dashboard design with:
-
-Sidebar navigation
-
-Dashboard overview
-
-Feature cards
-
-Clean forms
-
-Clear buttons
-
-Responsive desktop and mobile layouts
-
-Loading states
-
-Error messages
-
-Copy-to-clipboard functionality
-
-Edit and regenerate functionality
-
-Responsible AI
-
-Display a visible notice stating:
-
-"AI-generated content may contain errors. Review and verify important information before using it for business decisions or sending it externally. Do not enter confidential or sensitive information."
-
-Do not present AI outputs as guaranteed facts.
-
-Dashboard
-
-Show:
-
-Number of tasks completed
-
-Estimated time saved
-
-Recent AI activities
-
-Most-used productivity tool
-
-Include a simple productivity/time-saved indicator.
-
-The overall application should look like a realistic workplace productivity product rather than a basic demonstration.
-
-This project was built with [Lovable](https://lovable.dev).
-
-**Live app**: https://productive-ai-mate.lovable.app
-
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/19920c09-e608-4e0f-ad23-c07d5ac01704).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
-
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+# Start the development server
 npm run dev
 ```
+
+The dev server runs at `http://localhost:8080` by default.
+
+### Environment Variables
+
+Create a `.env` file in the project root:
+
+```env
+LOVABLE_API_KEY=your_lovable_ai_gateway_key
+```
+
+> The `LOVABLE_API_KEY` is only used server-side through TanStack Start server functions.
+
+## Project Structure
+
+```text
+src/
+  components/
+    ai-notice.tsx          # Responsible AI warning notice
+    tool-kit.tsx           # Shared UI primitives for tools
+  lib/
+    activity.ts            # LocalStorage activity tracking
+    ai-gateway.server.ts   # Lovable AI Gateway provider setup
+    ai.functions.ts        # Server functions for email, notes, planner, research
+  routes/
+    __root.tsx             # App shell with sidebar navigation
+    api/chat.ts            # Streaming chatbot endpoint
+    index.tsx              # Dashboard overview
+    email.tsx              # Smart Email Generator
+    notes.tsx              # Meeting Notes Summarizer
+    planner.tsx            # AI Task Planner
+    research.tsx           # AI Research Assistant
+    chat.tsx               # AI Workplace Chatbot
+  styles.css               # Obsidian Glass design tokens and Tailwind theme
+```
+
+## Available Scripts
+
+| Script | Description |
+|--------|-------------|
+| `npm run dev` | Start the Vite dev server |
+| `npm run build` | Build for production |
+| `npm run start` | Start the production server |
+| `npm run lint` | Run ESLint |
+| `npm run format` | Format code with Prettier |
+
+## AI Usage & Responsible AI
+
+Meridian uses generative AI to produce workplace content. All outputs should be reviewed before use in business decisions or external communication. The app displays a responsible-AI notice on every tool page:
+
+> "AI-generated content may contain errors. Review and verify important information before using it for business decisions or sending it externally. Do not enter confidential or sensitive information."
+
+## Design System
+
+Meridian uses the **Obsidian Glass** design direction:
+
+- Dark enterprise surfaces with subtle glass-like panels
+- Primary accent: emerald green
+- Typography: Space Grotesk headings + IBM Plex Sans body
+- Responsive sidebar navigation with a mobile-friendly bottom bar
+- Loading shimmer, error states, and copy-to-clipboard interactions
+
+## Deployment
+
+Meridian is built for edge deployment and can be published directly from Lovable. The live published URL is:
+
+**https://productive-ai-mate.lovable.app**
+
+To deploy your own fork, connect the project to your GitHub account in Lovable and publish from the editor.
+
+## License
+
+This project is generated by [Lovable](https://lovable.dev) and is provided as-is for personal or commercial use. Refer to your Lovable workspace terms for details.
+
+---
+
+Built with Lovable · Powered by TanStack Start & the Lovable AI Gateway
